@@ -1,0 +1,67 @@
+---
+import LayoutHome from "../layouts/LayoutHome.astro"
+import Search from "../components/icon/Search.astro"
+import { hiraganaData } from "../utility/mock_hiragana.js"
+import HiraganaCard from "../components/HiraganaCard.astro"
+
+const uniqueGroup = [...new Set(hiraganaData.map(g => g.group))]
+const category = [...new Set(hiraganaData.map(c => c.category))]
+---
+
+<LayoutHome title="Hiragana | Platform Interaktif Gratis - HiraganaEasy">
+  <div class="p-4 pt-18 md:pt-20">
+    <div class="sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl m-auto">
+      <div class="bg-white rounded-2xl p-6">
+        <h1 class="text-4xl lg:text-6xl font-extrabold text-center">Belajar <span class="text-red-500">Hiragana</span></h1>
+        <p class="text-lg text-gray-500 mt-3 lg:w-[70%] text-center m-auto">Kuasai dasar-dasar bahasa Jepang. Pelajari, cari, dan jelajahi karakter hiragana berdasarkan kategori dan kelompok dengan panduan interaktif kami.</p>
+        
+        <div class="flex justify-center mt-8 w-full">
+          <form
+            data-scope="searchHiragana"
+            data-ajax
+            action="/partials/search"
+            method="get" class="w-full"
+          >
+            <div class="relative w-full md:w-[60%] lg:w-[40%] m-auto">
+              <div class="absolute top-2 left-2">
+                <Search />
+              </div>
+              <input data-action="input->search" type="text" name="search" class="w-full py-2 pl-10 pe-5 border border-slate-300 rounded-xl focus:outline-red-500" placeholder="Cari hiragana atau romaji..." />
+            </div>
+          </form>
+        </div>
+        
+        <div data-scope="categoryChoice" data-status="all" class="flex flex-wrap mt-5 gap-3 md:justify-center">
+          <form data-ajax action="/partials/category?ctr=all" method="get">
+            <button
+              data-target="choice"
+              data-action="click->changeStatus"
+              class="py-2 px-5 rounded-full font-semibold bg-red-500 text-white border border-slate-300"
+            >
+              Semua
+            </button>
+          </form>
+          { category.map(g => (
+          <form data-ajax action={`/partials/category?ctr=${g}`} method="get">
+            <button
+              data-target="choice"
+              data-action="click->changeStatus"
+              class="py-2 px-5 rounded-full font-semibold border border-slate-300"
+            >
+              {g}
+            </button>
+          </form>
+          ))}
+        </div>
+        
+        <div data-swap="hiragana" class="mt-12">
+          {uniqueGroup.map((groupName) => {
+            const itemsInGroup = hiraganaData.filter(item => item.group === groupName)
+            
+            return <HiraganaCard arr={itemsInGroup} />
+          })}
+        </div>
+      </div>
+    </div>
+  </div>
+</LayoutHome>

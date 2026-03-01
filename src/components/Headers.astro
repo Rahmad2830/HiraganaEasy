@@ -1,0 +1,91 @@
+---
+import Hamburger from "./icon/Hamburger.astro"
+import ChevronRight from "./icon/ChevronRight.astro"
+---
+<nav data-scope="navbar" class="bg-white p-3 md:p-4 border-b border-gray-300 w-full fixed z-10">
+  <div class="max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl m-auto">
+    <div class="flex justify-between items-center">
+      <h1 class="font-extrabold text-2xl">Hiragana<span class="text-red-500">Easy</span></h1>
+      <button data-action="click->toggle" class="md:hidden">
+        <Hamburger />
+      </button>
+      
+      <div class="hidden md:flex gap-5">
+        <a data-target="navLink" data-nav href="/" class="font-semibold text-gray-500">Home</a>
+        <a data-target="navLink" data-nav href="/hiragana" class="font-semibold text-gray-500">Hiragana</a>
+        <a data-target="navLink" data-nav href="/kosakata" class="font-semibold text-gray-500">Kosakata</a>
+        <a data-target="navLink" data-nav href="/kuis" class="font-semibold text-gray-500">Kuis</a>
+      </div>
+    </div>
+    
+    <div data-target="mobileNavbar" hidden class="md:hidden flex flex-col gap-4 bg-white pt-3">
+      <a data-target="navLink" data-nav href="/" class="font-semibold text-gray-500">Home</a>
+      <a data-target="navLink" data-nav href="/hiragana" class="font-semibold text-gray-500">Hiragana</a>
+      <a data-target="navLink" data-nav href="/kosakata" class="font-semibold text-gray-500">Kosakata</a>
+      <a data-target="navLink" data-nav href="/kuis" class="font-semibold text-gray-500">Kuis</a>
+    </div>
+    
+    <div class="md:hidden flex mt-2">
+      <button data-action="click->toggleCategory" class="p-1 border border-gray-200 rounded-md bg-gray-100 flex gap-2 items-center">
+        <span class="text-sm">Kategori</span>
+        <ChevronRight />
+      </button>
+    </div>
+    
+    <div data-target="categoryBar" hidden class="md:hidden max-h-[70vh] overflow-y-auto">
+      <div class="rounded-md bg-white p-4">
+        <h1 class="text-xl font-semibold">Kategori</h1>
+        <ul class="p-4 font-semibold">
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/">Angka</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/hewan">Hewan</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/alam">Alam</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/makanan_minuman">Makanan&Minuman</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/warna">Warna</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/kata_kerja">Kata Kerja</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/benda">Benda</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/waktu">Waktu</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/keluarga">Keluarga</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/tempat">Tempat</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/sifat">Sifat</a>
+          </li>
+          <li data-target="sideLink" class="flex gap-2 items-center px-5">
+            <span class="font-extrabold text-5xl text-gray-400">•</span>
+            <a data-nav href="/kosakata/ekspresi">Ekspresi</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>

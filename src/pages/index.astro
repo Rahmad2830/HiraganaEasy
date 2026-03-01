@@ -1,11 +1,187 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import LayoutHome from "../layouts/LayoutHome.astro"
+import TandaTanya from "../components/icon/TandaTanya.astro"
+import Translate from "../components/icon/Translate.astro"
+import Puzzle from "../components/icon/Puzzle.astro"
+import BoxInsert from "../components/icon/BoxInsert.astro"
 ---
-
-<Layout>
-	<Welcome />
-</Layout>
+<LayoutHome title="Belajar Hiragana Dengan Mudah | Platform Interaktif Gratis - HiraganaEasy">
+  <div class="p-4 bg-red-100 pt-12">
+    <div class="sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl m-auto">
+      <div class="grid grid-cols-12 py-8">
+        <div class="col-span-12 md:col-span-6 flex flex-col justify-center">
+          <div class="rounded-2xl mb-8">
+            <div class="w-[75%] lg:w-[45%] p-1 bg-red-200 m-auto md:m-0 rounded-full">
+              <p class="text-sm text-red-500 font-semibold text-center">Platform belajar hiragana interaktif</p>
+            </div>
+          </div>
+          <h1 class="text-4xl lg:text-7xl font-bold text-center md:text-start">Belajar hiragana<br><span class="text-red-500">Dengan Mudah</span></h1>
+          <p class="mt-3 text-center md:text-start lg:w-[80%] text-lg">Belajar kosakata hiragana dengan metode yang praktis dan fokus pada hasil. Latihan singkat, konsisten, dan dirancang agar kamu cepat mengenali serta mengingat setiap karakter.</p>
+          <div class="mt-10 flex justify-center md:justify-start">
+            <a data-nav href="/hiragana" class="py-3 px-7 bg-red-500 text-white font-semibold text-lg rounded-xl font-semibold">
+              Mulai Sekarang!
+            </a>
+          </div>
+        </div>
+        <div class="col-span-12 md:col-span-6 p-8">
+          <img src="img/hira.webp" alt="huruf-hiragana-jepang" class="rounded-2xl shadow-md" />
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white p-4 pt-8">
+    <div class="sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl m-auto my-8">
+      <h1 class="text-4xl lg:text-6xl font-extrabold text-center">Kenali Huruf <span class="text-red-500">Vokal</span></h1>
+      <p class="text-lg text-center text-gray-500 mt-3">Pondasi bahasa jepang. Belajar dari lima konsonan ini.</p>
+      <div class="grid grid-cols-10 mt-8 gap-5 lg:gap-8">
+        <div class="col-span-5 lg:col-span-2">
+          <div class="bg-gray-100 rounded-2xl p-6 text-center">
+            <div class="text-5xl font-bold text-red-500 mb-2">あ</div>
+            <div class="font-bold text-gray-900 mb-1">A</div>
+            <i class="text-gray-500">Dibaca 'ah'</i>
+          </div>
+        </div>
+        <div class="col-span-5 lg:col-span-2">
+          <div class="bg-gray-100 rounded-2xl p-6 text-center">
+            <div class="text-5xl font-bold text-red-500 mb-2">い</div>
+            <div class="font-bold text-gray-900 mb-1">I</div>
+            <i class="text-gray-500">Dibaca 'ee'</i>
+          </div>
+        </div>
+        <div class="col-span-5 lg:col-span-2">
+          <div class="bg-gray-100 rounded-2xl p-6 text-center">
+            <div class="text-5xl font-bold text-red-500 mb-2">う</div>
+            <div class="font-bold text-gray-900 mb-1">U</div>
+            <i class="text-gray-500">Dibaca 'oo'</i>
+          </div>
+        </div>
+        <div class="col-span-5 lg:col-span-2">
+          <div class="bg-gray-100 rounded-2xl p-6 text-center">
+            <div class="text-5xl font-bold text-red-500 mb-2">え</div>
+            <div class="font-bold text-gray-900 mb-1">E</div>
+            <i class="text-gray-500">Dibaca 'eh'</i>
+          </div>
+        </div>
+        <div class="col-span-5 lg:col-span-2">
+          <div class="bg-gray-100 rounded-2xl p-6 text-center">
+            <div class="text-5xl font-bold text-red-500 mb-2">お</div>
+            <div class="font-bold text-gray-900 mb-1">O</div>
+            <i class="text-gray-500">Dibaca 'oh'</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-red-100 p-4 pt-8">
+    <div class="sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl m-auto my-8">
+      <h1 class="text-4xl lg:text-6xl font-extrabold text-center">Kuasai <span class="text-red-500">Fundamental</span></h1>
+      <p class="text-gray-500 text-lg lg:w-[50%] mt-3 m-auto text-center">Memahami hiragana membantu pengguna membaca pengucapan (furigana) dan kosakata dasar tanpa bergantung pada romaji.</p>
+      <div class="mt-8 grid grid-cols-12 gap-5 lg:gap-12">
+        <div class="col-span-12 md:col-span-6 lg:col-span-3">
+          <div class="bg-white rounded-2xl p-8">
+            <div class="bg-red-500 inline-flex p-2 rounded-xl">
+              <TandaTanya />
+            </div>
+            <h1 class="text-2xl font-bold mt-5">Kuis Interaktif</h1>
+            <p class="mt-3">Uji pengetahuanmu dengan pelajaran yang menggunakan elemen permainan (gamifikasi) yang menyesuaikan dengan kecepatan belajar pribadimu.</p>
+          </div>
+        </div>
+        <div class="col-span-12 md:col-span-6 lg:col-span-3">
+          <div class="bg-white rounded-2xl p-8">
+            <div class="bg-red-500 inline-flex p-2 rounded-xl">
+              <Translate />
+            </div>
+            <h1 class="text-2xl font-bold mt-5">Learn from "Zero"</h1>
+            <p class="mt-3">Hiragana adalah kunci sebelum mempelajari Katakana dan Kanji. Setelahnya, kamu akan lebih mudah memahami bahasa Jepang.</p>
+          </div>
+        </div>
+        <div class="col-span-12 md:col-span-6 lg:col-span-3">
+          <div class="bg-white rounded-2xl p-8">
+            <div class="bg-red-500 inline-flex p-2 rounded-xl">
+              <Puzzle />
+            </div>
+            <h1 class="text-2xl font-bold mt-5">Belajar Kosakata</h1>
+            <p class="mt-3">Pelajari kosakata penting yang sering digunakan dalam kehidupan sehari-hari. Dengan latihan, kamu akan lebih cepat mengingat dan percaya diri saat berbicara.</p>
+          </div>
+        </div>
+        <div class="col-span-12 md:col-span-6 lg:col-span-3">
+          <div class="bg-white rounded-2xl p-8">
+            <div class="bg-red-500 inline-flex p-2 rounded-xl">
+              <BoxInsert />
+            </div>
+            <h1 class="text-2xl font-bold mt-5">Simpan Progressmu</h1>
+            <p class="mt-3">Pantau perkembanganmu dari waktu ke waktu. Simpan Kosakata dan lihat materi yang sudah dikuasai dan fokuskan latihan pada bagian yang masih perlu ditingkatkan.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-white p-4">
+    <div class="sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl m-auto my-8">
+      <h1 class="text-4xl lg:text-6xl font-extrabold text-center">Disukai <span class="text-red-500">Banyak</span> Orang</h1>
+      <p class="text-lg text-center lg:w-[50%] mt-3 m-auto text-gray-500">Apa yang mereka katakan tentang HiraganaEasy</p>
+      <div class="mt-8 grid grid-cols-12 gap-5 lg:gap-10">
+        <div class="col-span-12 lg:col-span-4">
+          <div class="bg-gray-100 rounded-xl p-6">
+            <figcaption>
+              <i>"Awalnya aku kesulitan menghafal hiragana, tapi setelah belajar di platform ini jadi jauh lebih mudah. Materinya terstruktur dan latihannya bikin cepat paham. Sekarang aku sudah bisa baca kalimat sederhana"
+                </i>
+              </figcaption>
+              <div class="flex justify-between mt-5">
+                <div class="flex flex-col">
+                  <strong>Heri setiawan</strong>
+                  <p class="text-sm">— Pelajar</p>
+                </div>
+                <img src="/img/jordan-price.jpg" alt="jordan-price" width="50" />
+              </div>
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-4">
+          <div class="bg-gray-100 rounded-xl p-6 border-2 border-red-400 shadow-md">
+            <figcaption>
+              <i>"Belajarnya fleksibel banget, kita bisa lanjut sesuai waktu luang. Fitur simpan progress bikin aku nggak perlu takut kehilangan materi yang sudah dipelajari. Cocok banget buat yang sibuk tapi tetap mau belajar.”
+                </i>
+              </figcaption>
+              <div class="flex justify-between mt-5">
+                <div class="flex flex-col">
+                  <strong>Rizky</strong>
+                  <p class="text-sm">— Freelancer</p>
+                </div>
+                <img src="/img/matt-stauffer.jpg" alt="matt-stauffer" width="50" />
+              </div>
+          </div>
+        </div>
+        <div class="col-span-12 lg:col-span-4">
+          <div class="bg-gray-100 rounded-xl p-6">
+            <figcaption>
+              <i>"Latihan kosakatanya seru dan nggak membosankan. Setiap huruf dijabarkan dengan baik. Ada kuis dan pengulangan yang bikin aku lebih cepat ingat. Jadi makin semangat belajar bahasa Jepang setiap hari”
+                </i>
+              </figcaption>
+              <div class="flex justify-between mt-5">
+                <div class="flex flex-col">
+                  <strong>Dina Riyanti</strong>
+                  <p class="text-sm">— Pelajar</p>
+                </div>
+                <img src="/img/zuzana-kunckova.jpg" alt="zuzana-kunckova" width="50" />
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="bg-red-200 p-4">
+    <div class="sm:max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl m-auto my-8">
+      <div class="bg-red-600 p-8 md:p-14 flex justify-center items-center flex-col rounded-2xl md:rounded-[50px]">
+        <h1 class="text-3xl md:text-6xl text-white lg:w-[65%] text-center font-extrabold">Siap Untuk Belajar Hiragana Sekarang?</h1>
+        <p class="lg:w-[65%] text-lg text-white text-center mt-6">Belajar hiragana gratis tanpa dipungut biaya selamanya. Kalau tidak hari ini kapan lagi?</p>
+        <div class="mt-8 flex justify-center">
+          <a data-nav href="/hiragana" class="bg-white text-red-600 py-3 px-7 rounded-xl font-semibold text-lg">Mulai Sekarang!</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</LayoutHome>

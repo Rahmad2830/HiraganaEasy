@@ -1,0 +1,21 @@
+---
+export const partial = true
+import HiraganaCard from "../../components/HiraganaCard.astro"
+import { hiraganaData } from "../../utility/mock_hiragana.js"
+
+const ctr = Astro.url.searchParams.get("ctr")
+const rawData = (ctr === "all" || !ctr) 
+  ? hiraganaData 
+  : hiraganaData.filter(s => s.category === ctr)
+const uniqueGroups = [...new Set(rawData.map(item => item.group))]
+---
+
+<div data-swap="hiragana" class="mt-12">
+  {uniqueGroups.map((groupName) => {
+    const itemsInGroup = rawData.filter(item => item.group === groupName);
+    
+    return (
+      <HiraganaCard arr={itemsInGroup} />
+    )
+  })}
+</div>

@@ -1,0 +1,44 @@
+---
+export const partial = true
+
+let indexSoal
+let jmlSoal
+let skor
+
+if(Astro.request.method === "POST") {
+  const data = await Astro.request.formData()
+  indexSoal = Number(data.get("index"))
+  jmlSoal = Number(data.get("soal"))
+  skor = Number(data.get("skor"))
+}
+---
+
+<section data-swap="answer" class="w-full bg-white rounded-3xl text-white flex flex-col justify-center items-center py-20 px-6">
+  <div class="text-center max-w-sm w-full">
+    <p class="text-slate-400 font-medium uppercase text-[10px] mb-4">Sesi Selesai</p>
+    <h1 class="text-4xl font-black text-slate-800 mb-8">
+      Skor Akhir: <span class="text-rose-600">{ skor }</span>
+    </h1>
+
+    <div class="border-y border-slate-200 py-6 mb-10 flex justify-around">
+      <div class="text-center">
+        <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Total Soal</p>
+        <p class="text-lg font-bold text-slate-700">{ jmlSoal }</p>
+      </div>
+      <div class="w-px bg-slate-100 h-10"></div>
+      <div class="text-center">
+        <p class="text-[10px] font-bold text-slate-400 uppercase mb-1">Akurasi</p>
+        <p class="text-lg font-bold text-slate-700">{ Math.round((skor/(jmlSoal*10))*100) }%</p>
+      </div>
+    </div>
+    
+    <div class="flex flex-col gap-4">
+      <a data-nav href="/kuis" class="w-full py-4 bg-emerald-500 text-white rounded-2xl font-bold">
+        Main Lagi
+      </a>
+      <a data-nav href="/" class="w-full py-4 bg-rose-600 text-white rounded-2xl font-bold">
+        Kembali Ke Beranda
+      </a>
+    </div>
+  </div>
+</section>

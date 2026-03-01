@@ -1,0 +1,25 @@
+---
+export const partial = true
+import HiraganaCard from "../../components/HiraganaCard.astro"
+import { hiraganaData } from "../../utility/mock_hiragana.js"
+
+const search = Astro.url.searchParams.get("search")
+const rawData = (!search || search === "") 
+  ? hiraganaData 
+  : hiraganaData.filter(s => s.romaji.includes(search.toLowerCase()) || s.char.includes(search) || s.category.includes(search.toLowerCase()))
+const uniqueGroups = [...new Set(rawData.map(item => item.group))]
+---
+
+<div data-swap="hiragana" class="mt-12">
+  { rawData.length > 0 ? (
+    uniqueGroups.map((groupName) => {
+    const itemsInGroup = rawData.filter(item => item.group === groupName)
+    return <HiraganaCard arr={itemsInGroup} />
+    })
+  ) : (
+    <h1 class="text-xl italic font-semibold text-gray-400 text-center">
+      "{search}" tidak ditemukan
+    </h1>
+    <p class="text-gray-500 text-center">Coba cari dengan romaji atau karakter lain.</p>
+  )}
+</div>

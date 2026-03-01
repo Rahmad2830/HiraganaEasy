@@ -1,0 +1,63 @@
+---
+export const partial = true
+import { generateQuizData } from "../../utility/quiz.js"
+
+let jmlSoal
+let indexSoal
+let skor
+let progress
+const soal = generateQuizData()
+
+if (Astro.request.method === "POST") {
+  const data = await Astro.request.formData()
+  skor = Number(data.get("skor")) || 0
+  indexSoal = Number(data?.get("index")) || 1
+  jmlSoal = Number(data?.get("soal"))
+  
+  progress = ((indexSoal) / jmlSoal) * 100
+}
+---
+<div data-swap="quiz" class="min-h-screen md:max-w-screen-md lg:max-w-screen-8xl m-auto flex flex-col items-center p-4 pt-18 md:pt-20">
+  
+  <section class="w-full bg-white shadow-sm border border-slate-200 rounded-2xl p-4 mb-4">
+    <div class="flex justify-between items-center mb-3">
+      <h1 class="text-xl font-black italic">
+        HIRAGANA<span class="text-rose-600">EASY</span>
+      </h1>
+      <div data-swap="skorQuiz" class="flex flex-col">
+        <span class="text-[10px] uppercase font-bold text-slate-400 leading-none mb-1">Skor</span>
+        <span data-target="skor" class="text-2xl font-black text-slate-700 leading-none">{ skor }</span>
+      </div>
+    </div>
+    
+    <div data-swap="index" class="flex flex-col border-t border-slate-100 pt-3">
+      <div class="font-black flex justify-between">
+        <p class="">Jumlah soal</p>
+        <p class="">{ indexSoal }/{ jmlSoal }</p>
+      </div>
+      <div class="rounded-full bg-gray-300 h-2 w-full mt-2">
+        <div class="h-2 bg-rose-600 rounded-full" style={`width: ${progress}%`}></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-swap="answer" class="w-full bg-white shadow-sm rounded-2xl border border-slate-100 overflow-hidden">
+    <div class="p-8 text-center">
+      <h2 class="text-3xl font-bold mb-1">{ soal.pertanyaan }</h2>
+    </div>
+    
+    <form data-ajax action="/partials/answer" method="post" class="grid grid-cols-1 md:grid-cols-2 p-6 md:p-8 gap-5 pt-0">
+      <input type="hidden" name="correct" value={`${soal.jawabanBenar}`} />
+      <input type="hidden" name="skor" value={`${skor}`} />
+      <input type="hidden" name="index" value={`${indexSoal}`} />
+      <input type="hidden" name="jumlahSoal" value={`${jmlSoal}`} />
+      { soal.pilihan.map((item) => (
+      <label class="border-2 border-slate-200 rounded-xl py-4 px-6">
+        <input type="radio" name="answer" value={`${item}`} required/>
+        <span class="text-gray-500 font-black">{ item }</span>
+      </label>
+      ))}
+      <button type="submit" class="col-span-1 md:col-span-2 place-self-center font-black py-4 px-5 bg-rose-600 rounded-xl text-white">Kirim Jawaban</button>
+    </form>
+  </section>
+</div>

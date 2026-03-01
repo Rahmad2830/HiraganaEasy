@@ -1,0 +1,32 @@
+---
+import Hamburger from "./icon/Hamburger.astro"
+import ChevronRight from "./icon/ChevronRight.astro"
+---
+<nav data-scope="navbar" class="bg-white p-3 md:p-4 border-b border-gray-300 w-full fixed z-10">
+  <div class="max-w-screen-sm md:max-w-screen-md lg:max-w-screen-xl m-auto">
+    <div class="flex justify-between items-center">
+      <h1 class="font-extrabold text-2xl">Hiragana<span class="text-red-500">Easy</span></h1>
+      <button data-action="click->toggle" class="md:hidden">
+        <Hamburger />
+      </button>
+      
+      <div class="hidden md:flex gap-5">
+        <a data-target="navLink" data-nav href="/" class="font-semibold text-gray-500">Home</a>
+        <a data-target="navLink" data-nav href="/hiragana" class="font-semibold text-gray-500">Hiragana</a>
+        <a data-target="navLink" data-nav href="/kosakata" class="font-semibold text-gray-500">Kosakata</a>
+        <a data-target="navLink" data-nav href="/kuis" class="font-semibold text-gray-500">Kuis</a>
+      </div>
+    </div>
+    
+    <div data-target="mobileNavbar" hidden class="md:hidden flex flex-col gap-4 bg-white pt-3">
+      <a data-target="navLink" data-nav href="/" class="font-semibold text-gray-500">Home</a>
+      <a data-target="navLink" data-nav href="/hiragana" class="font-semibold text-gray-500">Hiragana</a>
+      <a data-target="navLink" data-nav href="/kosakata" class="font-semibold text-gray-500">Kosakata</a>
+      <a data-target="navLink" data-nav href="/kuis" class="font-semibold text-gray-500">Kuis</a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  console.log(window.location.href)
+</script>

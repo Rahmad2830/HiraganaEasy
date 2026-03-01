@@ -1,0 +1,55 @@
+---
+export const partial = true
+import { data } from "../../utility/mock.js"
+
+const { category } = Astro.params
+const params = Astro.url.searchParams.get("index") || "0"
+const index = Number(params)
+const filteredData = data.filter(a => a.kategori === category)
+const nextIndex = index + 1
+const prevIndex = index - 1
+const current = filteredData[index]
+const progress = ((index + 1) / filteredData.length) * 100
+---
+
+<section data-swap="progressBar" class="p-4 bg-white rounded-md shadow w-full">
+  <div class="flex justify-between">
+    <strong>Word Completion</strong>
+    <strong>{ index + 1 }/{ filteredData.length }</strong>
+  </div>
+  <div class="w-full bg-gray-200 rounded-full h-2">
+    <div class="bg-red-500 h-2 rounded-full" style={`width: ${progress}%`}></div>
+  </div>
+</section>
+
+<div data-swap="cardWord" class="flex flex-col justify-center items-center p-4">
+  <h1 class="text-6xl md:text-8xl font-[960]">{ current.hiragana }</h1>
+  <i class="text-gray-500 font-semibold text-xl">{ current.romaji }</i>
+  <h2 class="text-gray-500 font-semibold text-xl mt-5">Arti (Indonesia)</h2>
+  <h2 class="text-3xl md:text-4xl font-semibold">{ current.arti }</h2>
+  
+  <div class="w-[80%]">
+    <p class="mt-8 font-semibold">Contoh Pemakaian</p>
+    <div class="border-l-4 border-red-500 bg-red-50 p-4 mt-3 rounded-lg">
+      <p class="text-lg font-medium">{ current.kalimat_jepang }</p>
+      <i class="text-gray-500">{ current.cara_baca }</i>
+      <p class="text-lg font-medium">{ current.arti_kalimat }</p>
+    </div>
+  </div>
+  
+  <div class="flex justify-between px-4 mt-8 w-full">
+    { index > 0 &&
+    <form data-ajax action={`/partials/${category}?index=${prevIndex}`} method="get">
+      <button type="submit" class="py-2 px-5 rounded-lg bg-white border border-gray-300">Sebelumnya</button>
+    </form>
+    }
+    
+    { index === 0 && <div></div> }
+    
+    { index < filteredData.length - 1 &&
+    <form data-ajax action={`/partials/${category}?index=${nextIndex}`} method="get">
+      <button type="submit" class="py-2 px-5 rounded-lg bg-red-500 text-white">Selanjutnya</button>
+    </form>
+    }
+  </div>
+</div>

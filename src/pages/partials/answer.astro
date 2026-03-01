@@ -1,0 +1,69 @@
+---
+export const partial = true
+import Success from "../../components/icon/Success.astro"
+import Failed from "../../components/icon/Failed.astro"
+
+let jawaban
+let jawabanBenar
+let indexSoal
+let skor
+let jmlSoal
+let progress
+
+if(Astro.request.method === "POST") {
+  const data = await Astro.request.formData()
+  jawaban = data.get("correct")
+  skor = Number(data.get("skor"))
+  jawabanBenar = data.get("answer")
+  indexSoal = Number(data.get("index"))
+  jmlSoal = Number(data.get("jumlahSoal"))
+  
+  if(jawaban === jawabanBenar) {
+    skor += 10
+  }
+  
+  indexSoal++
+  progress = ((indexSoal) / jmlSoal) * 100
+}
+---
+<div data-swap="skorQuiz" class="flex flex-col">
+  <span class="text-[10px] uppercase font-bold text-slate-400 leading-none mb-1">Skor</span>
+  <span data-target="skor" class="text-2xl font-black text-slate-700 leading-none">{ skor }</span>
+</div>
+
+<div data-swap="index" class="flex flex-col border-t border-slate-100 pt-3">
+  <div class="font-black flex justify-between">
+    <p class="">Jumlah soal</p>
+    <p class="">{ indexSoal }/{ jmlSoal }</p>
+  </div>
+  <div class="rounded-full bg-gray-300 h-2 w-full mt-2">
+    <div class="h-2 bg-rose-600 rounded-full" style={`width: ${progress}%`}></div>
+  </div>
+</div>
+
+<section data-swap="answer" class={`w-full ${jawaban === jawabanBenar ? "bg-emerald-500" : "bg-rose-600"} rounded-3xl text-white flex flex-col justify-center items-center py-20 px-6`}>
+  
+  <div class="transform scale-125 mb-6">
+    {jawaban === jawabanBenar ? <Success /> : <Failed />}
+  </div>
+
+  <h1 class="text-5xl md:text-7xl font-black tracking-tighter mb-2">
+    {jawaban === jawabanBenar ? "MANTAP!" : "UPS..."}
+  </h1>
+  <p class="text-white/80 font-medium text-lg">
+    {jawaban === jawabanBenar ? "Jawaban kamu benar!" : "Jangan menyerah, coba lagi!"}
+  </p>
+  
+  <form data-ajax
+    action={indexSoal === jmlSoal ? `/partials/finish` : `/partials/kuis`}
+    method="post" class="mt-10 w-full max-w-[200px]"
+  >
+    <input type="hidden" name="index" value={`${indexSoal}`} />
+    <input type="hidden" name="skor" value={`${skor}`} />
+    <input type="hidden" name="soal" value={`${jmlSoal}`} />
+    
+    <button type="submit" class="w-full font-black py-4 px-6 bg-white rounded-2xl text-slate-900 uppercase">
+      {indexSoal === jmlSoal ? 'Lihat Hasil' : 'Lanjut'}
+    </button>
+  </form>
+</section>
